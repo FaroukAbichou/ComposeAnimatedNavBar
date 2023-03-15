@@ -1,4 +1,4 @@
-package com.example.composeanimatednavbar.ui
+package com.example.composeanimatednavbar.core
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind

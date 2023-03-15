@@ -1,4 +1,4 @@
-package com.example.composeanimatednavbar.ui.theme
+package com.example.composeanimatednavbar.core.theme
 
 import androidx.compose.ui.graphics.Color
 

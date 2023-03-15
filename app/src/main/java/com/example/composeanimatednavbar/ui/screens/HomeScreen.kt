@@ -1,4 +1,4 @@
-package com.example.composeanimatednavbar.ui.test
+package com.example.composeanimatednavbar.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -10,14 +10,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun LeaderBoardScreen(){
+fun HomeScreen(){
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ){
         Text(
-            text = "LeaderBoard Screen",
+            text = "Home Screen",
             modifier = Modifier
                 .align(
                     Alignment.Center

@@ -1,31 +1,31 @@
-package com.example.composeanimatednavbar.ui.test
+package com.example.composeanimatednavbar.ui.screens
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.example.composeanimatednavbar.ui.bottomNavItems
+import com.example.composeanimatednavbar.core.bottomNavItemsList
 
 
 @Composable
 fun NavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = bottomNavItems[2] .route
+        startDestination = bottomNavItemsList[2] .route
     ) {
-        composable(route = bottomNavItems[0].route) {
+        composable(route = bottomNavItemsList[0].route) {
             LeaderBoardScreen()
         }
-        composable(route = bottomNavItems[1].route) {
+        composable(route = bottomNavItemsList[1].route) {
             GiftsScreen()
         }
-        composable(route = bottomNavItems[2].route) {
+        composable(route = bottomNavItemsList[2].route) {
             HomeScreen()
         }
-        composable(route = bottomNavItems[3].route) {
+        composable(route = bottomNavItemsList[3].route) {
             NotificationScreen()
         }
-        composable(route = bottomNavItems[4].route) {
+        composable(route = bottomNavItemsList[4].route) {
             SettingsScreen()
         }
     }
