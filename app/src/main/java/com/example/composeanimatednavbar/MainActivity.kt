@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -27,7 +25,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.composeanimatednavbar.ui.bottomNavItems
-import com.example.composeanimatednavbar.ui.bottomNavLineCods
 import com.example.composeanimatednavbar.ui.drawColoredShadow
 import com.example.composeanimatednavbar.ui.test.NavGraph
 import com.example.composeanimatednavbar.ui.theme.ComposeAnimatedNavBarTheme
@@ -56,7 +53,7 @@ fun AnimatedNavBar() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val lineEnd = remember { mutableStateOf(30.dp) }
+    val lineEnd = remember { mutableStateOf(0.dp) }
 
 
     val lineEndCounter by animateDpAsState(
@@ -82,7 +79,7 @@ fun AnimatedNavBar() {
                     )
                     .height(84.dp),
             ) {
-                val firstEnd = maxWidth
+                val firstEnd = maxWidth/5
                 BottomAppBar(
 
                     containerColor = MaterialTheme.colorScheme.onPrimary
@@ -96,7 +93,7 @@ fun AnimatedNavBar() {
                                     popUpTo(navController.graph.findStartDestination().id)
                                     launchSingleTop = true
                                 }
-                                lineEnd.value = item.index
+                                lineEnd.value = firstEnd*item.index
                             },
                             selected = currentRoute == item.route ,
                             icon = {

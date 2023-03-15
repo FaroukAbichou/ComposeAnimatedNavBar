@@ -8,31 +8,31 @@ val bottomNavItems = listOf(
         name = "المتصدرين",
         route = "leaderboard",
         icon = R.drawable.badge,
-        index = 1
+        index = 0
     ),
     BottomNavItem(
         name = "الهدايا",
         route = "gifts",
         icon = R.drawable.gift,
-        index = 2,
+        index = 1,
     ),
     BottomNavItem(
         name = "الرئيسية",
         route = "home",
         icon = R.drawable.home,
-        index = 3,
+        index = 2,
     ),
     BottomNavItem(
         name = "الإشعارات",
         route = "notifications",
         icon = R.drawable.bell,
-        index = 4,
+        index = 3,
     ),
     BottomNavItem(
         name = "الإعدادات",
         route = "settings",
         icon = R.drawable.settings,
-        index = 5,
+        index = 4,
     ),
 )
 
