@@ -1,4 +1,6 @@
 # ComposeAnimatedNavBar
 
-https://user-images.githubusercontent.com/117727520/225373601-567b2e2c-73b5-4564-8662-08a937d1d307.mov
+BottomAppBar with Animation
+
+https://user-images.githubusercontent.com/117727520/225373961-131f1aa6-50d4-4e31-b1a5-37b25ae52cbe.mov
 
