@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -33,16 +34,6 @@ fun AnimatedNavBar() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val lineEnd = remember { mutableStateOf(0.dp) }
-
-    val lineEndCounter by animateDpAsState(
-        targetValue = lineEnd.value,
-        animationSpec = tween(
-            durationMillis = 200,
-            easing = FastOutSlowInEasing
-        )
-    )
-
     Scaffold(
         bottomBar = {
             BoxWithConstraints(
@@ -54,6 +45,16 @@ fun AnimatedNavBar() {
                     )
             ) {
                 val firstEnd = maxWidth/5
+
+                val lineEnd = remember { mutableStateOf(firstEnd) }
+
+                val lineEndCounter by animateDpAsState(
+                    targetValue = lineEnd.value,
+                    animationSpec = tween(
+                        durationMillis = 200,
+                        easing = FastOutSlowInEasing
+                    )
+                )
 
                 BottomAppBar(
                     containerColor = Color(0xffe7c8e7)
@@ -79,12 +80,13 @@ fun AnimatedNavBar() {
                             label = {
                                 Text(
                                     text = item.name,
+                                    fontSize = 10.sp
                                 )
                             },
                             colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = Color.Transparent,
+                                selectedIconColor = Color(0xff0d0b33),
                                 unselectedIconColor = Color(0xff4c2f6f),
-                                indicatorColor = Color.Transparent
+                                indicatorColor = Color(0xffe7c8e7)
                             ),
                         )
                     }
