@@ -58,7 +58,7 @@ fun AnimatedNavBar() {
     val end1Counter by animateFloatAsState(
         targetValue = lineStart.value,
         animationSpec = tween(
-            durationMillis = 5000,
+            durationMillis = 2000,
             easing = FastOutSlowInEasing
         )
     )
@@ -102,6 +102,8 @@ fun AnimatedNavBar() {
                                 navController.navigate(item.route) {
                                     popUpTo(navController.graph.findStartDestination().id)
                                     launchSingleTop = true
+
+
                                 }
                             },
                             selected = currentRoute == item.route ,
