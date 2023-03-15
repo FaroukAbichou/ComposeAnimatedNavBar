@@ -22,8 +22,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.composeanimatednavbar.core.bottomNavItemsList
-import com.example.composeanimatednavbar.core.drawColoredShadow
-import com.example.composeanimatednavbar.ui.screens.NavGraph
+import com.example.composeanimatednavbar.core.NavGraph
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,19 +48,15 @@ fun AnimatedNavBar() {
             BoxWithConstraints(
 
                 modifier = Modifier
-                    .drawColoredShadow(
-                        color = Color.Black,
-                        spread = 8.dp,
-                    )
+
                     .clip(
                         RoundedCornerShape(topEnd = 20.dp, topStart = 20.dp)
                     )
-                    .height(84.dp),
             ) {
                 val firstEnd = maxWidth/5
 
                 BottomAppBar(
-                    containerColor = MaterialTheme.colorScheme.onPrimary
+                    containerColor = Color(0xffe7c8e7)
                 ) {
 
                     bottomNavItemsList.forEach { item ->
@@ -87,9 +82,9 @@ fun AnimatedNavBar() {
                                 )
                             },
                             colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = Color.Black,
-                                unselectedIconColor = MaterialTheme.colorScheme.outline,
-                                indicatorColor = MaterialTheme.colorScheme.onPrimary
+                                selectedIconColor = Color.Transparent,
+                                unselectedIconColor = Color(0xff4c2f6f),
+                                indicatorColor = Color.Transparent
                             ),
                         )
                     }
@@ -97,10 +92,6 @@ fun AnimatedNavBar() {
 
                 Box(
                     modifier = Modifier
-                        .drawColoredShadow(
-                            color = Color.Cyan,
-                            spread = 10.dp,
-                        )
                         .width(
                             maxWidth/5
                         )

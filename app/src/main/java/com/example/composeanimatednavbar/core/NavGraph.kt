@@ -1,10 +1,10 @@
-package com.example.composeanimatednavbar.ui.screens
+package com.example.composeanimatednavbar.core
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.example.composeanimatednavbar.core.bottomNavItemsList
+import com.example.composeanimatednavbar.ui.screens.*
 
 
 @Composable
