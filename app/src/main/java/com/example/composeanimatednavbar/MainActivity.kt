@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -24,6 +25,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.composeanimatednavbar.ui.bottomNavItems
+import com.example.composeanimatednavbar.ui.bottomNavLineCods
 import com.example.composeanimatednavbar.ui.drawColoredShadow
 import com.example.composeanimatednavbar.ui.test.NavGraph
 import com.example.composeanimatednavbar.ui.theme.ComposeAnimatedNavBarTheme
@@ -55,26 +57,25 @@ fun AnimatedNavBar() {
     val lineStart = remember { mutableStateOf(0.0F) }
     val lineEnd = remember { mutableStateOf(220.0F) }
 
-    val end1Counter by animateFloatAsState(
+    val lineStartCounter by animateFloatAsState(
         targetValue = lineStart.value,
         animationSpec = tween(
-            durationMillis = 2000,
+            durationMillis = 800,
             easing = FastOutSlowInEasing
         )
     )
-    val end2Counter by animateFloatAsState(
+    val lineEndCounter by animateFloatAsState(
         targetValue = lineEnd.value,
         animationSpec = tween(
-            durationMillis = 5000,
+            durationMillis = 800,
             easing = FastOutSlowInEasing
         )
     )
-
-
 
     Scaffold(
         bottomBar = {
-            BottomAppBar(
+            BoxWithConstraints(
+
                 modifier = Modifier
                     .drawColoredShadow(
                         color = Color.Black,
@@ -84,27 +85,23 @@ fun AnimatedNavBar() {
                         RoundedCornerShape(topEnd = 20.dp, topStart = 20.dp)
                     )
                     .height(84.dp),
-                containerColor = MaterialTheme.colorScheme.onPrimary
-
             ) {
-                Box(
-                    Modifier.fillMaxWidth()
+                val firstEnd = maxWidth/6
+                BottomAppBar(
+
+                    containerColor = MaterialTheme.colorScheme.onPrimary
+
                 ) {
-                    LineAnimation(
-                        startX = 0f,
-                        startY = 0f,
-                        endX = 220f,
-                        endY = 0f,
-                    )
-                    bottomNavItems.forEach { item ->
-                        this@BottomAppBar.NavigationBarItem(
+
+                    bottomNavItems.forEach {  item ->
+                        NavigationBarItem(
                             onClick = {
                                 navController.navigate(item.route) {
                                     popUpTo(navController.graph.findStartDestination().id)
                                     launchSingleTop = true
-
-
                                 }
+                                lineStart.value = bottomNavLineCods[item.index].LineStart
+                                lineEnd.value = bottomNavLineCods[item.index].LineEnd
                             },
                             selected = currentRoute == item.route ,
                             icon = {
@@ -128,14 +125,30 @@ fun AnimatedNavBar() {
                     }
                 }
 
+                Box(
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(3.dp)
+                        .clip(RoundedCornerShape(5.dp))
+                        .background(Color.Black)
+                )
 
-
+//                LineAnimation(
+//                    startX = lineStartCounter,
+//                    startY = 0.0f,
+//                    endX = lineEndCounter,
+//                    endY = 0.0f,
+//                )
             }
+
+
+
         }
     ){
         NavGraph(
             navController
         )
+
     }
 }
 
