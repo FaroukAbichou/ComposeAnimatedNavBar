@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -54,17 +56,17 @@ fun AnimatedNavBar() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val lineStart = remember { mutableStateOf(0.0F) }
-    val lineEnd = remember { mutableStateOf(220.0F) }
+    val lineStart = remember { mutableStateOf(0.0.dp) }
+    val lineEnd = remember { mutableStateOf(0.0.dp) }
 
-    val lineStartCounter by animateFloatAsState(
+    val lineStartCounter by animateDpAsState(
         targetValue = lineStart.value,
         animationSpec = tween(
             durationMillis = 800,
             easing = FastOutSlowInEasing
         )
     )
-    val lineEndCounter by animateFloatAsState(
+    val lineEndCounter by animateDpAsState(
         targetValue = lineEnd.value,
         animationSpec = tween(
             durationMillis = 800,
@@ -76,6 +78,7 @@ fun AnimatedNavBar() {
         bottomBar = {
             BoxWithConstraints(
 
+
                 modifier = Modifier
                     .drawColoredShadow(
                         color = Color.Black,
@@ -86,7 +89,7 @@ fun AnimatedNavBar() {
                     )
                     .height(84.dp),
             ) {
-                val firstEnd = maxWidth/6
+                val firstEnd = maxWidth
                 BottomAppBar(
 
                     containerColor = MaterialTheme.colorScheme.onPrimary
@@ -100,8 +103,8 @@ fun AnimatedNavBar() {
                                     popUpTo(navController.graph.findStartDestination().id)
                                     launchSingleTop = true
                                 }
-                                lineStart.value = bottomNavLineCods[item.index].LineStart
-                                lineEnd.value = bottomNavLineCods[item.index].LineEnd
+//                                lineStart.value = 0f
+//                                lineEnd.value = firstEnd.value
                             },
                             selected = currentRoute == item.route ,
                             icon = {
@@ -127,18 +130,15 @@ fun AnimatedNavBar() {
 
                 Box(
                     modifier = Modifier
-                        .width(100.dp)
+                        .width(
+                            maxWidth/5
+                        )
                         .height(3.dp)
+
                         .clip(RoundedCornerShape(5.dp))
                         .background(Color.Black)
                 )
 
-//                LineAnimation(
-//                    startX = lineStartCounter,
-//                    startY = 0.0f,
-//                    endX = lineEndCounter,
-//                    endY = 0.0f,
-//                )
             }
 
 
