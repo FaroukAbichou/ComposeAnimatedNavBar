@@ -80,10 +80,9 @@ fun AnimatedNavBar() {
                     .height(84.dp),
             ) {
                 val firstEnd = maxWidth/5
+
                 BottomAppBar(
-
                     containerColor = MaterialTheme.colorScheme.onPrimary
-
                 ) {
 
                     bottomNavItems.forEach {  item ->
