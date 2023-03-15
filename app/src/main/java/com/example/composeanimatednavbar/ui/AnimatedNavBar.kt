@@ -46,7 +46,7 @@ fun AnimatedNavBar() {
             ) {
                 val firstEnd = maxWidth/5
 
-                val lineEnd = remember { mutableStateOf(firstEnd) }
+                val lineEnd = remember { mutableStateOf(firstEnd*2) }
 
                 val lineEndCounter by animateDpAsState(
                     targetValue = lineEnd.value,
@@ -67,7 +67,7 @@ fun AnimatedNavBar() {
                                     popUpTo(navController.graph.findStartDestination().id)
                                     launchSingleTop = true
                                 }
-                                lineEnd.value = firstEnd*item.index
+                                lineEnd.value = firstEnd * item.index
                             },
                             selected = currentRoute == item.route ,
                             icon = {
@@ -97,6 +97,7 @@ fun AnimatedNavBar() {
                         .width(
                             maxWidth/5
                         )
+                        .padding(horizontal = 8.dp)
                         .height(2.dp)
                         .offset(
                             with(LocalDensity.current){
