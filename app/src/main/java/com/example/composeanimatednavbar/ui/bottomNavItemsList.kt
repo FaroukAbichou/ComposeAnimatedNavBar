@@ -1,8 +1,6 @@
 package com.example.composeanimatednavbar.ui
 
 
-import android.content.res.Resources
-import android.util.DisplayMetrics
 import com.example.composeanimatednavbar.R
 
 val bottomNavItems = listOf(
@@ -10,31 +8,31 @@ val bottomNavItems = listOf(
         name = "المتصدرين",
         route = "leaderboard",
         icon = R.drawable.badge,
-        index = 0
+        index = 1
     ),
     BottomNavItem(
         name = "الهدايا",
         route = "gifts",
         icon = R.drawable.gift,
-        index = 1,
+        index = 2,
     ),
     BottomNavItem(
         name = "الرئيسية",
         route = "home",
         icon = R.drawable.home,
-        index = 2,
+        index = 3,
     ),
     BottomNavItem(
         name = "الإشعارات",
         route = "notifications",
         icon = R.drawable.bell,
-        index = 3,
+        index = 4,
     ),
     BottomNavItem(
         name = "الإعدادات",
         route = "settings",
         icon = R.drawable.settings,
-        index = 4,
+        index = 5,
     ),
 )
 

@@ -56,16 +56,9 @@ fun AnimatedNavBar() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    val lineStart = remember { mutableStateOf(0.0.dp) }
-    val lineEnd = remember { mutableStateOf(0.0.dp) }
+    val lineEnd = remember { mutableStateOf(30.dp) }
 
-    val lineStartCounter by animateDpAsState(
-        targetValue = lineStart.value,
-        animationSpec = tween(
-            durationMillis = 800,
-            easing = FastOutSlowInEasing
-        )
-    )
+
     val lineEndCounter by animateDpAsState(
         targetValue = lineEnd.value,
         animationSpec = tween(
@@ -103,8 +96,7 @@ fun AnimatedNavBar() {
                                     popUpTo(navController.graph.findStartDestination().id)
                                     launchSingleTop = true
                                 }
-//                                lineStart.value = 0f
-//                                lineEnd.value = firstEnd.value
+                                lineEnd.value = item.index
                             },
                             selected = currentRoute == item.route ,
                             icon = {
@@ -133,7 +125,8 @@ fun AnimatedNavBar() {
                         .width(
                             maxWidth/5
                         )
-                        .height(3.dp)
+                        .height(2.dp)
+                        .offset(with(LocalDensity.current){ lineEndCounter },0.dp)
 
                         .clip(RoundedCornerShape(5.dp))
                         .background(Color.Black)
